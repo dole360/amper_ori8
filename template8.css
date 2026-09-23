@@ -1,0 +1,529 @@
+/* =====================================================================
+   Learning Platform 360 — Template8
+   Sports / Stadium / Gaming Portal
+   Visual layer only. Existing IDs, APIs, login, admin CRUD, sheets and
+   application behavior are intentionally preserved.
+   ===================================================================== */
+:root{
+  --t8-navy:#061936;
+  --t8-navy-2:#0b2a58;
+  --t8-blue:#0876d9;
+  --t8-blue-2:#0054a8;
+  --t8-red:#ef2e36;
+  --t8-red-dark:#c81f2a;
+  --t8-yellow:#ffd335;
+  --t8-white:#fff;
+  --t8-ink:#13213a;
+  --t8-muted:#6b7890;
+  --t8-soft:#f3f6fb;
+  --t8-line:#dbe3ef;
+  --t8-shadow:0 16px 42px rgba(4,25,55,.14);
+  --t8-shadow-soft:0 8px 24px rgba(4,25,55,.09);
+  --t8-radius:8px;
+  --t8-max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body.lp-template8{
+  margin:0;
+  min-height:100vh;
+  color:var(--t8-ink);
+  background:#fff;
+  font-family:"Kanit","Sarabun",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+body.lp-template8 a{color:inherit}
+body.lp-template8 img{max-width:100%}
+
+/* ---------- top utility / announcement ---------- */
+body.lp-template8 .announcement,
+body.lp-template8 .announcement-bar,
+body.lp-template8 #announcementBar{
+  position:relative;
+  z-index:160;
+  background:linear-gradient(90deg,var(--t8-blue-2),var(--t8-blue))!important;
+  color:#fff!important;
+}
+body.lp-template8 .announcement-inner,
+body.lp-template8 .announcement-content{
+  width:min(var(--t8-max),calc(100% - 28px))!important;
+  max-width:var(--t8-max)!important;
+  min-height:34px;
+  margin:0 auto!important;
+  padding:5px 8px!important;
+  border:0!important;
+  background:transparent!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+body.lp-template8 #announcementText{color:#fff!important;font-size:12px!important;font-weight:600!important}
+body.lp-template8 .announcement .brand-light{display:none!important}
+body.lp-template8 .announcement-social,
+body.lp-template8 .admin-access-button{
+  border:1px solid rgba(255,255,255,.32)!important;
+  border-radius:999px!important;
+  background:rgba(255,255,255,.12)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+body.lp-template8 .admin-access-button:hover,
+body.lp-template8 .announcement-social:hover{background:var(--t8-red)!important;border-color:var(--t8-red)!important}
+
+/* ---------- white sports navigation card ---------- */
+body.lp-template8 .site-header{
+  position:relative;
+  z-index:150;
+  width:min(var(--t8-max),calc(100% - 28px));
+  margin:14px auto -70px;
+  border:0!important;
+  border-radius:2px!important;
+  background:#fff!important;
+  box-shadow:0 12px 30px rgba(0,22,54,.24)!important;
+  overflow:visible!important;
+}
+body.lp-template8 .site-header .container,
+body.lp-template8 .site-header .nav-wrap{
+  width:100%!important;
+  max-width:none!important;
+  min-height:70px;
+  margin:0!important;
+  padding:0 12px!important;
+}
+body.lp-template8 .site-header .brand{
+  min-width:170px;
+  max-width:255px;
+  padding:8px 14px!important;
+  display:inline-flex!important;
+  align-items:center;
+  gap:10px;
+  color:var(--t8-navy)!important;
+  font-weight:900!important;
+  text-decoration:none!important;
+}
+body.lp-template8 .site-header .brand::after{
+  content:"360";
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:34px;
+  height:22px;
+  padding:0 7px;
+  border-radius:999px;
+  background:var(--t8-yellow);
+  color:var(--t8-navy);
+  font-size:11px;
+  font-weight:900;
+}
+body.lp-template8 .brand-icon{
+  width:40px!important;
+  height:40px!important;
+  flex:0 0 40px;
+  border:0!important;
+  border-radius:8px!important;
+  background-color:var(--t8-yellow)!important;
+  box-shadow:none!important;
+}
+body.lp-template8 .main-nav{flex:1;justify-content:center;gap:0!important}
+body.lp-template8 .main-nav>a,
+body.lp-template8 .main-nav-dropdown-toggle{
+  position:relative;
+  min-height:70px;
+  padding:0 12px!important;
+  display:inline-flex!important;
+  align-items:center;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#22314a!important;
+  font-size:12px!important;
+  font-weight:700!important;
+  transition:.18s ease;
+}
+body.lp-template8 .main-nav>a::after,
+body.lp-template8 .main-nav-dropdown-toggle::after{
+  content:"";
+  position:absolute;
+  left:12px;right:12px;bottom:0;
+  height:4px;
+  background:var(--t8-red);
+  transform:scaleX(0);
+  transition:transform .18s ease;
+}
+body.lp-template8 .main-nav>a:hover,
+body.lp-template8 .main-nav-dropdown-toggle:hover,
+body.lp-template8 .main-nav-dropdown.is-open .main-nav-dropdown-toggle{color:var(--t8-red)!important;background:#fff7f7!important}
+body.lp-template8 .main-nav>a:hover::after,
+body.lp-template8 .main-nav-dropdown-toggle:hover::after,
+body.lp-template8 .main-nav-dropdown.is-open .main-nav-dropdown-toggle::after{transform:scaleX(1)}
+body.lp-template8 .main-nav-dropdown-menu{
+  margin-top:0!important;
+  padding:8px!important;
+  border:0!important;
+  border-top:4px solid var(--t8-red)!important;
+  border-radius:0 0 6px 6px!important;
+  background:#fff!important;
+  box-shadow:0 18px 40px rgba(4,25,55,.24)!important;
+}
+body.lp-template8 .main-nav-dropdown-menu a{padding:10px 12px!important;border-radius:4px!important;color:var(--t8-navy)!important}
+body.lp-template8 .main-nav-dropdown-menu a:hover{background:#eef6ff!important;color:var(--t8-blue)!important}
+body.lp-template8 .nav-profile-actions{min-height:70px;gap:7px;padding-left:10px;border-left:1px solid #e6edf6}
+body.lp-template8 .profile-cart-btn,
+body.lp-template8 .mobile-profile-point,
+body.lp-template8 .nav-profile-actions>button{
+  border:0!important;
+  border-radius:999px!important;
+  background:var(--t8-red)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  font-weight:800!important;
+}
+body.lp-template8 .mobile-profile-photo{width:39px!important;height:39px!important;border:3px solid var(--t8-yellow)!important;border-radius:50%!important;box-shadow:none!important}
+
+/* ---------- stadium hero ---------- */
+body.lp-template8 #home.hero,
+body.lp-template8 .hero{
+  position:relative;
+  width:100%;
+  min-height:570px;
+  height:min(700px,76vh);
+  margin:0 0 0;
+  padding-top:70px;
+  border:0!important;
+  border-radius:0!important;
+  background:linear-gradient(135deg,var(--t8-navy),var(--t8-blue-2))!important;
+  box-shadow:none!important;
+  overflow:hidden;
+  isolation:isolate;
+}
+body.lp-template8 #websiteHeroOverlay.hero-overlay{
+  inset:0!important;
+  background-size:cover!important;
+  background-position:center 45%!important;
+  filter:saturate(1.08) contrast(1.08) brightness(.86);
+}
+body.lp-template8 #home.hero::before,
+body.lp-template8 .hero::before{
+  content:"";
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(2,15,38,.25) 0%,rgba(3,19,46,.18) 42%,rgba(2,14,35,.80) 100%),
+    linear-gradient(180deg,rgba(4,18,43,.12),rgba(4,18,43,.36));
+}
+body.lp-template8 #home.hero::after,
+body.lp-template8 .hero::after{
+  content:"";
+  position:absolute;left:-6%;right:-6%;bottom:-52px;height:110px;z-index:2;
+  background:#fff;
+  transform:rotate(-2.4deg);
+  transform-origin:center;
+}
+body.lp-template8 .hero-content{
+  position:relative;z-index:5;
+  width:min(var(--t8-max),calc(100% - 32px))!important;
+  max-width:var(--t8-max)!important;
+  min-height:100%;
+  margin:0 auto!important;
+  padding:86px 40px 120px!important;
+  display:flex!important;
+  flex-direction:column;
+  align-items:flex-end!important;
+  justify-content:center;
+  text-align:right!important;
+}
+body.lp-template8 #heroKickerText,
+body.lp-template8 .hero .eyebrow{
+  margin:0 0 8px!important;
+  padding:5px 10px!important;
+  border-radius:2px!important;
+  background:var(--t8-red)!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  letter-spacing:.16em!important;
+  text-transform:uppercase;
+}
+body.lp-template8 #heroTitleText,
+body.lp-template8 .hero h1{
+  max-width:650px;
+  margin:0!important;
+  color:#fff!important;
+  font-size:clamp(46px,7vw,86px)!important;
+  font-weight:900!important;
+  line-height:.94!important;
+  letter-spacing:-.045em!important;
+  text-transform:uppercase;
+  text-shadow:0 8px 28px rgba(0,0,0,.34);
+}
+body.lp-template8 #heroDescriptionText,
+body.lp-template8 .hero p{
+  max-width:560px!important;
+  margin:14px 0 0 auto!important;
+  color:rgba(255,255,255,.94)!important;
+  font-size:clamp(14px,1.4vw,17px)!important;
+  line-height:1.65!important;
+  text-shadow:0 3px 16px rgba(0,0,0,.28);
+}
+body.lp-template8 .floating-dot{display:none!important}
+body.lp-template8 .editwebsite{z-index:10!important;top:94px!important;right:18px!important}
+body.lp-template8 .editwebsite-btn{
+  border:0!important;border-radius:4px!important;background:var(--t8-red)!important;color:#fff!important;box-shadow:0 7px 18px rgba(239,46,54,.26)!important;font-weight:800!important
+}
+body.lp-template8 .template8-hero-cta{
+  margin-top:22px;padding:12px 22px;display:inline-flex;align-items:center;justify-content:center;
+  border:0;border-radius:2px;background:var(--t8-blue);color:#fff!important;text-decoration:none;font-size:13px;font-weight:900;letter-spacing:.04em;box-shadow:0 12px 26px rgba(0,0,0,.22)
+}
+body.lp-template8 .template8-score-badge{
+  position:absolute;left:34px;bottom:95px;z-index:6;width:88px;height:88px;border:6px solid rgba(255,255,255,.16);border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;background:rgba(4,24,58,.72);color:var(--t8-yellow);font-size:12px;font-weight:900;line-height:1.12;backdrop-filter:blur(6px)
+}
+body.lp-template8 .template8-headline-strip{
+  position:relative;z-index:12;margin-top:-22px;background:var(--t8-blue);color:#fff;border-top:4px solid var(--t8-yellow);border-bottom:4px solid var(--t8-red)
+}
+body.lp-template8 .template8-headline-strip-inner{width:min(var(--t8-max),calc(100% - 28px));margin:auto;min-height:40px;display:flex;align-items:center;gap:20px;overflow:hidden;white-space:nowrap;font-size:12px;font-weight:800}
+body.lp-template8 .template8-headline-strip b{color:var(--t8-yellow)}
+body.lp-template8 .template8-headline-strip span{opacity:.95}
+
+/* ---------- consistent content width ---------- */
+body.lp-template8 main>section:not(#home),
+body.lp-template8 #news,
+body.lp-template8 #studentServicesBox,
+body.lp-template8 #userBox,
+body.lp-template8 #learningSourceBox,
+body.lp-template8 #learningBaseModule,
+body.lp-template8 #cliproomBox,
+body.lp-template8 #FBpostBox,
+body.lp-template8 #buttonsection,
+body.lp-template8 #featured,
+body.lp-template8 #bestPracticeBox,
+body.lp-template8 #activityBox{
+  position:relative;
+}
+body.lp-template8 #userBox,
+body.lp-template8 #learningSourceBox,
+body.lp-template8 #learningBaseModule{
+  width:min(var(--t8-max),calc(100% - 32px))!important;
+  max-width:var(--t8-max)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+body.lp-template8 #userBox>.container,
+body.lp-template8 #learningSourceBox>.container,
+body.lp-template8 #learningBaseModule>.container{width:100%!important;max-width:none!important;margin:0!important;padding-left:0!important;padding-right:0!important}
+body.lp-template8 .container{max-width:var(--t8-max)}
+
+/* ---------- sections / cards ---------- */
+body.lp-template8 .news-section,
+body.lp-template8 .student-services-section,
+body.lp-template8 #userBox,
+body.lp-template8 #learningSourceBox,
+body.lp-template8 #learningBaseModule,
+body.lp-template8 #cliproomBox,
+body.lp-template8 #FBpostBox,
+body.lp-template8 #buttonsection,
+body.lp-template8 #featured,
+body.lp-template8 #bestPracticeBox,
+body.lp-template8 #activityBox{padding-top:54px!important;padding-bottom:54px!important;background:#fff!important}
+body.lp-template8 .news-section{padding-top:72px!important}
+body.lp-template8 .section-heading h2,
+body.lp-template8 .student-services-box>h2,
+body.lp-template8 .learning-section-title,
+body.lp-template8 .cliproom-section-title{
+  color:var(--t8-navy)!important;font-weight:900!important;text-transform:uppercase;letter-spacing:-.02em
+}
+body.lp-template8 .section-heading h2::after,
+body.lp-template8 .student-services-box>h2::after{
+  content:"";display:block;width:58px;height:5px;margin-top:9px;background:linear-gradient(90deg,var(--t8-red),var(--t8-yellow))
+}
+body.lp-template8 .home-summary-grid{gap:0!important;border:1px solid var(--t8-line);box-shadow:var(--t8-shadow-soft)}
+body.lp-template8 .home-summary-card{
+  border:0!important;border-right:1px solid var(--t8-line)!important;border-radius:0!important;background:#fff!important;box-shadow:none!important
+}
+body.lp-template8 .home-summary-card:nth-child(2n){background:#f7f9fc!important}
+body.lp-template8 .home-summary-card:first-child{border-top:5px solid var(--t8-red)!important}
+body.lp-template8 .home-summary-card:nth-child(2){border-top:5px solid var(--t8-blue)!important}
+body.lp-template8 .home-summary-card:nth-child(3){border-top:5px solid var(--t8-yellow)!important}
+body.lp-template8 .home-summary-card:nth-child(4){border-top:5px solid var(--t8-red)!important}
+body.lp-template8 .home-summary-card:nth-child(5){border-top:5px solid var(--t8-blue)!important}
+body.lp-template8 .home-summary-number{color:var(--t8-navy)!important;font-weight:900!important}
+body.lp-template8 .news-slider,
+body.lp-template8 .student-services-box,
+body.lp-template8 .boss-box,
+body.lp-template8 .student-box,
+body.lp-template8 .learning-source-card,
+body.lp-template8 .cliproom-card,
+body.lp-template8 .facebook-card,
+body.lp-template8 .button-section-card{
+  border-radius:4px!important;
+  border:1px solid var(--t8-line)!important;
+  box-shadow:var(--t8-shadow-soft)!important;
+}
+body.lp-template8 .news-slider{border-top:5px solid var(--t8-blue)!important}
+body.lp-template8 .student-services-box{border-top:5px solid var(--t8-red)!important;background:#fff!important}
+body.lp-template8 .setting-menu-grid{gap:10px!important}
+body.lp-template8 .setting-menu-item,
+body.lp-template8 .setting-menu-card,
+body.lp-template8 .setting-menu-grid>a,
+body.lp-template8 .setting-menu-grid>button{
+  border-radius:4px!important;border:1px solid #d9e2ef!important;background:#fff!important;box-shadow:none!important;transition:.18s ease
+}
+body.lp-template8 .setting-menu-item:hover,
+body.lp-template8 .setting-menu-card:hover,
+body.lp-template8 .setting-menu-grid>a:hover{transform:translateY(-3px);border-color:var(--t8-blue)!important;box-shadow:0 10px 24px rgba(8,118,217,.15)!important}
+body.lp-template8 .news-arrow,
+body.lp-template8 .shopactivity-arrow,
+body.lp-template8 .cliproom-arrow{background:var(--t8-navy)!important;color:#fff!important;border:0!important;box-shadow:none!important}
+body.lp-template8 .news-arrow:hover,
+body.lp-template8 .shopactivity-arrow:hover,
+body.lp-template8 .cliproom-arrow:hover{background:var(--t8-red)!important}
+body.lp-template8 .shopactivity-dot.active,
+body.lp-template8 .news-dot.active{background:var(--t8-red)!important}
+body.lp-template8 .student-services-login-card{border-radius:4px!important;overflow:hidden!important;box-shadow:var(--t8-shadow)!important}
+body.lp-template8 #studentServicesId{border-color:#b9c9dd!important;border-radius:3px!important}
+body.lp-template8 .student-services-login button,
+body.lp-template8 .student-services-login-submit{border-radius:3px!important;background:var(--t8-blue)!important;color:#fff!important;font-weight:900!important}
+body.lp-template8 .student-services-login button:hover{background:var(--t8-red)!important}
+
+/* ---------- alternating stadium bands ---------- */
+body.lp-template8 #learningSourceBox,
+body.lp-template8 #FBpostBox{
+  background:linear-gradient(135deg,#071a38,#0b3268)!important;
+  color:#fff;
+  padding-left:18px!important;padding-right:18px!important;
+}
+body.lp-template8 #learningSourceBox .section-heading h2,
+body.lp-template8 #FBpostBox .section-heading h2,
+body.lp-template8 #learningSourceBox h2,
+body.lp-template8 #FBpostBox h2{color:#fff!important}
+body.lp-template8 #learningSourceBox .section-heading p,
+body.lp-template8 #FBpostBox .section-heading p{color:#c8d6e8!important}
+body.lp-template8 #learningBaseModule{
+  background:linear-gradient(90deg,var(--t8-red) 0 48%,#0a2c5f 48% 100%)!important;
+  padding-left:18px!important;padding-right:18px!important;
+}
+body.lp-template8 #learningBaseModule *{--shopactivity-accent:var(--t8-yellow)}
+body.lp-template8 #learningBaseModule .container,
+body.lp-template8 #learningBaseModule .shopactivity-preview-inner{background:#fff;border-radius:4px;padding:18px!important;box-shadow:var(--t8-shadow)}
+
+/* ---------- buttons ---------- */
+body.lp-template8 .admin-manage-data-button,
+body.lp-template8 .cliproom-open-all,
+body.lp-template8 .view-all-button,
+body.lp-template8 .readbook-open-all,
+body.lp-template8 .btn-primary,
+body.lp-template8 .primary-button{
+  border:0!important;border-radius:3px!important;background:var(--t8-red)!important;color:#fff!important;font-weight:900!important;box-shadow:0 7px 18px rgba(239,46,54,.20)!important
+}
+body.lp-template8 .admin-manage-data-button:hover,
+body.lp-template8 .cliproom-open-all:hover,
+body.lp-template8 .view-all-button:hover{background:var(--t8-red-dark)!important;transform:translateY(-1px)}
+
+/* ---------- generic subpages ---------- */
+body.lp-template8:not(:has(#home)){
+  background:linear-gradient(180deg,#061a39 0,#0a2e62 210px,#f4f7fb 210px,#f4f7fb 100%)!important;
+}
+body.lp-template8 :is(.course-page,.report-page,.reward-page,.media-page,.innovation-page,.bp-page,.about-page,.users-page,.plan-page,.fb-page){
+  min-height:100vh!important;
+  padding:32px 16px 64px!important;
+  background:transparent!important;
+}
+body.lp-template8 :is(.course-container,.report-container,.reward-container,.media-container,.innovation-container,.bp-container,.about-container,.users-container,.plan-container,.fb-container){
+  width:min(var(--t8-max),100%)!important;
+  margin:0 auto!important;
+}
+body.lp-template8 :is(.course-topbar,.report-topbar,.reward-topbar,.media-topbar,.innovation-topbar,.bp-topbar,.about-topbar,.users-topbar,.plan-topbar,.fb-topbar){margin-bottom:20px!important}
+body.lp-template8 :is(.course-back,.report-back,.reward-back,.media-back,.innovation-back,.bp-back,.about-back,.users-back,.plan-back,.fb-back){
+  border:1px solid rgba(255,255,255,.35)!important;border-radius:3px!important;background:rgba(255,255,255,.10)!important;color:#fff!important;box-shadow:none!important
+}
+body.lp-template8 :is(.course-heading,.report-heading,.reward-heading,.media-heading,.innovation-heading,.bp-heading,.about-heading,.users-heading,.plan-heading,.fb-heading){
+  position:relative;overflow:hidden;margin-bottom:18px!important;padding:30px 32px!important;border:0!important;border-radius:4px!important;background:linear-gradient(110deg,var(--t8-navy),var(--t8-blue-2))!important;color:#fff!important;box-shadow:var(--t8-shadow)!important
+}
+body.lp-template8 :is(.course-heading,.report-heading,.reward-heading,.media-heading,.innovation-heading,.bp-heading,.about-heading,.users-heading,.plan-heading,.fb-heading)::after{
+  content:"";position:absolute;right:-38px;bottom:-58px;width:210px;height:120px;background:var(--t8-red);transform:rotate(-18deg);opacity:.95
+}
+body.lp-template8 :is(.course-heading,.report-heading,.reward-heading,.media-heading,.innovation-heading,.bp-heading,.about-heading,.users-heading,.plan-heading,.fb-heading) h1{position:relative;z-index:2;color:#fff!important;font-weight:900!important;text-transform:uppercase!important;letter-spacing:-.025em!important}
+body.lp-template8 :is(.course-heading,.report-heading,.reward-heading,.media-heading,.innovation-heading,.bp-heading,.about-heading,.users-heading,.plan-heading,.fb-heading) p{position:relative;z-index:2;color:var(--t8-yellow)!important;font-weight:800!important}
+body.lp-template8 :is(.course-panel,.report-panel,.reward-panel,.media-panel,.innovation-panel,.bp-panel,.about-panel,.users-panel,.plan-panel,.fb-panel){
+  border:1px solid var(--t8-line)!important;border-radius:4px!important;background:#fff!important;box-shadow:var(--t8-shadow)!important;overflow:hidden
+}
+body.lp-template8 :is(.course-table,.report-table,.reward-table,.media-table,.innovation-table,.bp-table,.users-table,.plan-table) th{
+  background:var(--t8-navy)!important;color:#fff!important;font-weight:800!important
+}
+body.lp-template8 :is(.course-table,.report-table,.reward-table,.media-table,.innovation-table,.bp-table,.users-table,.plan-table) tbody tr:hover{background:#eef6ff!important}
+body.lp-template8 :is(.course-download,.report-download,.reward-download,.media-download,.innovation-download,.bp-download,.plan-download){border-radius:3px!important;background:var(--t8-blue)!important;color:#fff!important;font-weight:800!important}
+body.lp-template8 :is(input,select,textarea):focus{border-color:var(--t8-blue)!important;box-shadow:0 0 0 3px rgba(8,118,217,.12)!important;outline:none!important}
+
+/* ---------- profile / misc pages: conservative visual skin ---------- */
+body.lp-template8 .wrap,
+body.lp-template8 .page-wrap,
+body.lp-template8 .page-container,
+body.lp-template8 .content-wrapper{max-width:var(--t8-max);margin-left:auto;margin-right:auto}
+body.lp-template8 .card,
+body.lp-template8 .panel{border-radius:4px;border-color:var(--t8-line);box-shadow:var(--t8-shadow-soft)}
+
+/* ---------- modal / admin safety: never turn management popup into a page ---------- */
+body.lp-template8 .swal2-container{
+  position:fixed!important;
+  inset:0!important;
+  z-index:50000!important;
+  width:100vw!important;
+  height:100vh!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:10px!important;
+}
+body.lp-template8 .swal2-popup{
+  position:relative!important;
+  z-index:50001!important;
+  max-width:calc(100vw - 20px)!important;
+  max-height:calc(100vh - 20px)!important;
+}
+body.lp-template8 :is(.cr-overlay,.rp-overlay,.rw-overlay,.md-manager-overlay,.in-manager-overlay,.bp-manager-overlay,.pl-overlay,.team-manager-overlay,.newsletter-action-overlay,.newsletter-image-overlay,.facebook-action-overlay){
+  position:fixed!important;
+  inset:0!important;
+  z-index:51000!important;
+  width:100vw!important;
+  height:100vh!important;
+  max-width:none!important;
+  margin:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+body.lp-template8 :is(.cr-dialog,.rp-dialog,.rw-dialog,.md-manager-dialog,.in-manager-dialog,.bp-manager-dialog,.pl-dialog,.team-manager-dialog,.newsletter-action-dialog){
+  position:relative!important;
+  width:min(760px,94vw)!important;
+  max-width:94vw!important;
+  max-height:90vh!important;
+  margin:auto!important;
+  overflow:auto!important;
+  border-radius:8px!important;
+}
+
+/* ---------- footer ---------- */
+body.lp-template8 footer,
+body.lp-template8 .site-footer{background:var(--t8-navy)!important;color:#fff!important;border-top:6px solid var(--t8-red)!important}
+body.lp-template8 footer a,
+body.lp-template8 .site-footer a{color:#fff!important}
+
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+  body.lp-template8 .site-header{width:calc(100% - 18px)}
+  body.lp-template8 .site-header .brand{min-width:135px}
+  body.lp-template8 .main-nav>a,body.lp-template8 .main-nav-dropdown-toggle{padding:0 8px!important;font-size:11px!important}
+}
+@media(max-width:860px){
+  body.lp-template8 .site-header{position:relative;width:100%;margin:0;border-radius:0!important;box-shadow:0 5px 18px rgba(0,22,54,.12)!important}
+  body.lp-template8 #home.hero,body.lp-template8 .hero{padding-top:0;min-height:520px;height:auto}
+  body.lp-template8 .hero-content{min-height:520px;padding:80px 22px 110px!important;align-items:flex-start!important;text-align:left!important}
+  body.lp-template8 #heroDescriptionText,body.lp-template8 .hero p{margin-left:0!important;margin-right:auto!important}
+  body.lp-template8 .template8-score-badge{display:none}
+  body.lp-template8 .editwebsite{top:14px!important}
+}
+@media(max-width:620px){
+  body.lp-template8 .announcement-inner{width:100%!important;padding-inline:10px!important}
+  body.lp-template8 #home.hero::after,body.lp-template8 .hero::after{bottom:-70px;height:105px}
+  body.lp-template8 #heroTitleText,body.lp-template8 .hero h1{font-size:clamp(38px,13vw,58px)!important}
+  body.lp-template8 .hero-content{min-height:470px;padding:64px 18px 98px!important}
+  body.lp-template8 .template8-headline-strip-inner{gap:12px;font-size:10px}
+  body.lp-template8 #userBox,body.lp-template8 #learningSourceBox,body.lp-template8 #learningBaseModule{width:calc(100% - 18px)!important}
+  body.lp-template8 :is(.course-page,.report-page,.reward-page,.media-page,.innovation-page,.bp-page,.about-page,.users-page,.plan-page,.fb-page){padding:18px 8px 44px!important}
+  body.lp-template8 :is(.course-heading,.report-heading,.reward-heading,.media-heading,.innovation-heading,.bp-heading,.about-heading,.users-heading,.plan-heading,.fb-heading){padding:23px 18px!important}
+}
